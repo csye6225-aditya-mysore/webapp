@@ -5,6 +5,9 @@ import {v4} from "uuid";
 import { lengthValidation } from "../models/validations.js";
 
 const createUser = async (req, res, next) => {
+    if(Object.keys(req.query).length > 0){
+        return res.status(400).send();
+    }
     try{
         const {username, password, first_name, last_name} = req.body;
         lengthValidation(password);
@@ -26,7 +29,7 @@ const createUser = async (req, res, next) => {
         });
     }
     catch(error){
-        console.log(error);
+        // console.log(error);
         return res.status(400).send();
     }
     
@@ -51,6 +54,9 @@ const getUser = async (req, res, next) => {
 }
 
 const updateUser = async (req, res, next) => {
+    if(Object.keys(req.query).length > 0){
+        return res.status(400).send();
+    }
     try{
         const body = req.body;
         // console.log(Object.keys(body).length);
@@ -79,7 +85,7 @@ const updateUser = async (req, res, next) => {
 
     }
     catch(error){
-        console.log(error);
+        // console.log(error);
         return res.status(400).send();
     }
 }
