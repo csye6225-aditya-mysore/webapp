@@ -3,7 +3,7 @@ import { getEmailAndPasswordFromToken } from "../middlewares/authentication.js";
 
 describe("Testing webapp", () => {
     it("Simple test case", (done) => {
-        expect(1).to.equal(1);
+        expect(1).to.equal(0);
         done();
     });
 
