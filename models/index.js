@@ -37,7 +37,7 @@ const initializeDB = async (dbObject) => {
         }
         await pg_client.end();
         await dbObject.authenticate();
-        await dbObject.sync();
+        await dbObject.sync({alter: true});
     }
     catch(error){
         console.log(error);
