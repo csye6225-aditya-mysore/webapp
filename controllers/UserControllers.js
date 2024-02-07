@@ -10,6 +10,20 @@ const createUser = async (req, res, next) => {
     }
     try{
         const {username, password, first_name, last_name} = req.body;
+        const notAllowedProperties = ["account_created", "account_updated", "id"];
+        const allowedProperties = ["username", "password", "first_name", "last_name"];
+        Object.keys(req.body).forEach((key) => {
+            if(notAllowedProperties.includes(key)){
+                throw new Error("One or more properties cannot be updated.");
+            }
+        });
+
+        Object.keys(req.body).forEach((key) => {
+            if(!allowedProperties.includes(key)){
+                throw new Error("One or more properties cannot be updated.");
+            }
+        });
+        
         lengthValidation(password);
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({
@@ -66,6 +80,13 @@ const updateUser = async (req, res, next) => {
         const notAllowedProperties = ["username", "account_created", "account_updated", "id"];
         Object.keys(body).forEach((key) => {
             if(notAllowedProperties.includes(key)){
+                throw new Error("One or more properties cannot be updated.");
+            }
+        });
+
+        const allowedProperties = ["password", "first_name", "last_name"];
+        Object.keys(body).forEach((key) => {
+            if(!allowedProperties.includes(key)){
                 throw new Error("One or more properties cannot be updated.");
             }
         });
