@@ -7,4 +7,16 @@ const checkValidRoute = async (req, res, next) => {
     next();
 }
 
-export {checkValidRoute};
+
+const checkIfValidMethod = async (req, res, next) => {
+    if(req.method === "GET"){
+        next();
+        return;
+    }
+    else{
+        res.header({"Cache-Control": "no-cache"});
+        return res.status(405).send();
+    }
+}
+
+export {checkValidRoute, checkIfValidMethod};
