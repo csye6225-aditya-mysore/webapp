@@ -19,8 +19,8 @@ healthRouter.get("/", async (req, res) => {
     }
 });
 
-healthRouter.all("/", async (req, res) => {
-    return res.status(405).send();
-})
+// healthRouter.all("/", async (req, res) => {
+//     return res.status(405).send();
+// })
 
 export default healthRouter;

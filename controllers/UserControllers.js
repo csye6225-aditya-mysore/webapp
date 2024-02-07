@@ -53,17 +53,12 @@ const getUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
     try{
         const body = req.body;
-        console.log(Object.keys(body).length);
+        // console.log(Object.keys(body).length);
         if(Object.keys(body).length == 0){
             throw new Error("Body is empty.");
         }
-        // if(body.hasOwnProperty("username") || body.hasOwnProperty("id") || body.hasOwnProperty("account_created") || body.hasOwnProperty("account_updated")){
-        //     throw new Error("Cannot update these fields");
-        // }
         const notAllowedProperties = ["username", "account_created", "account_updated", "id"];
-        // const allowedProperties = ["first_name", "last_name", "password"];
         Object.keys(body).forEach((key) => {
-            console.log(key);
             if(notAllowedProperties.includes(key)){
                 throw new Error("One or more properties cannot be updated.");
             }
