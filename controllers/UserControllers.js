@@ -50,6 +50,9 @@ const createUser = async (req, res, next) => {
 };
 
 const getUser = async (req, res, next) => {
+    if(Object.keys(req.query).length > 0){
+        return res.status(400).send();
+    }
     try{
         console.log("Authenticated!");
         const objectToSend = {
