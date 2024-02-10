@@ -20,9 +20,13 @@ app.listen(8000, async () => {
     console.log("Server started on 8000");
     try{
         await initializeDB(sequelize);
+        // Added event emiter that the listeners can listen to
+        app.emit("App Started");
     }
     catch(error){
         console.log("Database initialization error!");
         console.log(error);
     }  
 });
+
+export {app};
