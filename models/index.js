@@ -5,10 +5,10 @@ const {Client} = pkg;
 
 dotenv.config();
 
-const dbName = process.env.DATABASE_NAME || "example";
-const username = process.env.USERNAME || "postgres";
-const password = process.env.PASSWORD || "postgres";
-const host = process.env.DATABASE_HOST || "localhost";
+const dbName =  "example";
+const username =  "postgres";
+const password =  "postgres";
+const host =  "localhost";
 
 const pg_client = new Client({
     host: host,
