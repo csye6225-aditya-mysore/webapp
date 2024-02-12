@@ -12,7 +12,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres
+        image: postgres:latest
 
         env:
           POSTGRES_DB: postgres
@@ -33,7 +33,6 @@ jobs:
     steps:
       - name: Checkout branch 
         uses: actions/checkout@v4
-      - run: pg_ctl -D /var/lib/postgresql/data -l logfile start
 
 
       - name: Install dependencies
