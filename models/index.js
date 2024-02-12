@@ -30,6 +30,7 @@ const sequelize = new Sequelize(
 const initializeDB = async (dbObject) => {
     try{
         console.log("Attempting to connect...")
+        console.log(host, username, password, dbName);
         await pg_client.connect();
         const result = await pg_client.query(`SELECT datname FROM pg_catalog.pg_database WHERE datname = '${dbName}'`);
         if(result.rowCount == 0){
