@@ -35,14 +35,14 @@ jobs:
         uses: actions/checkout@v4
 
 
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
       
       - run: sudo service docker start
       
       - name: starting docker postgres
         run: |
-          docker run --name some-postgres -e POSTGRES_PASSWORD=postgres -d postgres
+          docker run --name some-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB:example -e POSTGRES_USER:postgres -d postgres
           sleep 15
           docker ps
 
@@ -51,10 +51,10 @@ jobs:
       #     sleep 20
       #     docker ps
 
-      # - name: Run tests
-      #   run: npm run test
-      #   env:
-      #     DATABASE_NAME: example
-      #     USERNAME: postgres
-      #     PASSWORD: postgres
-      #     DATABASE_HOST: 127.0.0.1
+      - name: Run tests
+        run: npm run test
+        env:
+          DATABASE_NAME: example
+          USERNAME: postgres
+          PASSWORD: postgres
+          DATABASE_HOST: 127.0.0.1
