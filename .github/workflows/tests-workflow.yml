@@ -15,8 +15,12 @@ jobs:
         image: postgres
 
         env:
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
+        ports:
+          - 5432:5432
         
         options: >-
           --health-cmd pg_isready
@@ -24,8 +28,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         
-        ports:
-          - 5432:5432
+        
     
     steps:
       - name: Checkout branch 
@@ -34,8 +37,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      
-      - run : docker container ls -a
 
       - name: Run tests
         run: npm run test
@@ -43,4 +44,4 @@ jobs:
           DATABASE_NAME: example
           USERNAME: postgres
           PASSWORD: postgres
-          DATABASE_HOST: localhost
+          DATABASE_HOST: 127.0.0.1
