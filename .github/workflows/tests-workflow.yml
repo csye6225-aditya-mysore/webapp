@@ -34,9 +34,15 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      
+      - run : sleep 10
+      - run : |
+              until pg_isready -h localhost -p 5432 -U ${{ secrets.USERNAME }}; do
+                sleep 2
+              done
 
       - name: Run tests
-        run: npm run server
+        run: npm run test
         env:
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
           USERNAME: ${{ secrets.USERNAME }}
