@@ -33,7 +33,8 @@ jobs:
     steps:
       - name: Checkout branch 
         uses: actions/checkout@v4
-      - run: echo ${{secrets.USERNAME}}
+      - run: pg_ctl -D /var/lib/postgresql/data -l logfile start
+
 
       - name: Install dependencies
         run: npm install
