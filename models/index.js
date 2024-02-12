@@ -17,6 +17,8 @@ const pg_client = new Client({
     port: 5432
 });
 
+const value = "123";
+
 const sequelize = new Sequelize(
     dbName,
     username,
@@ -31,6 +33,7 @@ const initializeDB = async (dbObject) => {
     try{
         console.log("Attempting to connect...")
         console.log(host, username, password, dbName);
+        console.log(value);
         await pg_client.connect();
         const result = await pg_client.query(`SELECT datname FROM pg_catalog.pg_database WHERE datname = '${dbName}'`);
         if(result.rowCount == 0){
