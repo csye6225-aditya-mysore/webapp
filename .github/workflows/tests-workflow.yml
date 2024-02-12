@@ -35,7 +35,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - run : sleep 10
+      - run : docker container ls -a
 
       - name: Run tests
         run: npm run test
