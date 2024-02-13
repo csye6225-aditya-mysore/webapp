@@ -38,13 +38,21 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - run: sudo service docker start
-      
-      - name: starting docker postgres
+      # - run: sudo service docker start
+      - name: Start postgresql service
         run: |
-          docker run --name some-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB:example -e POSTGRES_USER:postgres -p 5432:5432 -d postgres
-          sleep 15
-          docker ps
+          sudo systemctl start postgresql.service
+          pg_isready
+      
+      - name: Create dtabtase
+        run: |
+          sudo -u postgres psql --command="CREATE USER postgres PASSWORD postgres"
+      
+      # - name: starting docker postgres
+      #   run: |
+      #     docker run --name some-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB:example -e POSTGRES_USER:postgres -p 5432:5432 -d postgres
+      #     sleep 15
+      #     docker ps
 
       # - name: Sleep and run 
       #   run: |
