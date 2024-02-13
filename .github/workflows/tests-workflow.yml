@@ -54,6 +54,8 @@ jobs:
           realpath pg_config 
           find pg_hba.conf
           find pg_config
+          postgres --version
+          psql --version
       
       # - name: starting docker postgres
       #   run: |
