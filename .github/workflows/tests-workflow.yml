@@ -48,6 +48,10 @@ jobs:
         run: |
           sudo -u postgres psql --command="SHOW password_encryption;"
       
+      - name: Change authentication method
+        run: |
+          sudo cat /var/lib/pgsql/data/pg_hba.conf
+      
       # - name: starting docker postgres
       #   run: |
       #     docker run --name some-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB:example -e POSTGRES_USER:postgres -p 5432:5432 -d postgres
