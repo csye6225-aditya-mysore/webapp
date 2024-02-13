@@ -51,6 +51,9 @@ jobs:
       - name: Change authentication method
         run: sudo -u postgres psql --command="SELECT version();" --command="\du"
 
+      - name: Change user password
+        run: sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
+
       - name: open conf file
         run: echo "/etc/postgresql/$(ls /etc/postgresql)/main"
       
