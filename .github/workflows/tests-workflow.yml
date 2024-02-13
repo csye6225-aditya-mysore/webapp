@@ -52,7 +52,8 @@ jobs:
         run: |
           realpath pg_hba.conf
           realpath pg_config 
-          cat /home/runner/work/webapp-forked/webapp-forked/pg_hba.conf
+          find pg_hba.conf
+          find pg_config
       
       # - name: starting docker postgres
       #   run: |
