@@ -50,8 +50,7 @@ jobs:
       
       - name: Change authentication method
         run: |
-          sudo whereis pg_config
-          sudo whereis pg_hba.conf
+          sudo cat /usr/bin/bash/pg_hba.conf
       
       # - name: starting docker postgres
       #   run: |
