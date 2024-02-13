@@ -49,9 +49,7 @@ jobs:
           sudo -u postgres psql --command="SHOW password_encryption;"
       
       - name: Change authentication method
-        run: |
-          postgres --version
-          psql --version
+        run: sudo -u postgres psql --command="SELECT version();" --command="\du"
       
       # - name: starting docker postgres
       #   run: |
