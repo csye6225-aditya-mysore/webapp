@@ -34,13 +34,6 @@ jobs:
       - name: Checkout branch 
         uses: actions/checkout@v4
 
-      - name: Setup postgresql
-        uses: harmon758/postgresql-action@v1
-        with:
-          postgresql version: '16'
-      
-      - name: Check postgresql
-        run: sudo systemctl status postgresql
 
       - name: Install dependencies
         run: npm install
@@ -51,6 +44,29 @@ jobs:
           sudo systemctl start postgresql.service
           pg_isready
       
+      - name: Create dtabtase
+        run: |
+          sudo -u postgres psql --command="SHOW password_encryption;"
+      
+      - name: Change authentication method
+        run: sudo -u postgres psql --command="SELECT version();" --command="\du"
+
+      - name: Set permisson on conf file
+        run: sudo chmod 755 /etc/postgresql/16/main/pg_hba.conf
+
+      - name: open conf file
+        run: cat /etc/postgresql/16/main/pg_hba.conf
+      
+      # - name: starting docker postgres
+      #   run: |
+      #     docker run --name some-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB:example -e POSTGRES_USER:postgres -p 5432:5432 -d postgres
+      #     sleep 15
+      #     docker ps
+
+      # - name: Sleep and run 
+      #   run: |
+      #     sleep 20
+      #     docker ps
 
       - name: Run tests
         run: npm run test
