@@ -59,10 +59,10 @@ jobs:
       #     sleep 20
       #     docker ps
 
-      # - name: Run tests
-      #   run: npm run test
-      #   env:
-      #     DATABASE_NAME: example
-      #     USERNAME: postgres
-      #     PASSWORD: postgres
-      #     DATABASE_HOST: 127.0.0.1
+      - name: Run tests
+        run: npm run test
+        env:
+          DATABASE_NAME: example
+          USERNAME: postgres
+          PASSWORD: postgres
+          DATABASE_HOST: 127.0.0.1
