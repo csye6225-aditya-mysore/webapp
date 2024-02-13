@@ -46,7 +46,7 @@ jobs:
       
       - name: Create dtabtase
         run: |
-          sudo -u postgres psql --command="SELECT * FROM pg_catalog.pg_database"
+          sudo -u postgres psql --command="SHOW password_encryption;"
       
       # - name: starting docker postgres
       #   run: |
