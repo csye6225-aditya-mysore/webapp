@@ -52,7 +52,7 @@ jobs:
         run: |
           realpath pg_hba.conf
           realpath pg_config 
-          vi /home/runner/work/webapp-forked/webapp-forked/pg_hba.conf
+          cat /home/runner/work/webapp-forked/webapp-forked/pg_hba.conf
       
       # - name: starting docker postgres
       #   run: |
