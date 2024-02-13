@@ -51,9 +51,6 @@ jobs:
       - name: Change authentication method
         run: sudo -u postgres psql --command="SELECT version();" --command="\du"
 
-      - name: Set permisson on conf file
-        run: sudo chmod 755 /etc/postgresql/16/main/pg_hba.conf
-
       - name: open conf file
         run: echo "/etc/postgresql/$(ls /etc/postgresql)/main"
       
