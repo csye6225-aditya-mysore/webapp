@@ -8,28 +8,7 @@ on:
 jobs:
   integration-testing:
     runs-on: ubuntu-20.04
-    # container: node:16.18
-
-    # services:
-    #   postgres:
-    #     image: postgres:latest
-
-    #     env:
-    #       POSTGRES_DB: postgres
-    #       POSTGRES_USER: postgres
-    #       POSTGRES_PASSWORD: postgres
-
-    #     ports:
-    #       - 5432:5432
         
-    #     options: >-
-    #       --health-cmd pg_isready
-    #       --health-interval 10s
-    #       --health-timeout 10s
-    #       --health-retries 20
-        
-        
-    
     steps:
       - name: Checkout branch 
         uses: actions/checkout@v4
@@ -43,35 +22,14 @@ jobs:
         run: |
           sudo systemctl start postgresql.service
           pg_isready
-      
-      - name: Create dtabtase
-        run: |
-          sudo -u postgres psql --command="SHOW password_encryption;"
-      
-      - name: Change authentication method
-        run: sudo -u postgres psql --command="SELECT version();" --command="\du"
 
       - name: Change user password
-        run: sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
-
-      - name: open conf file
-        run: echo "/etc/postgresql/$(ls /etc/postgresql)/main"
-      
-      # - name: starting docker postgres
-      #   run: |
-      #     docker run --name some-postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB:example -e POSTGRES_USER:postgres -p 5432:5432 -d postgres
-      #     sleep 15
-      #     docker ps
-
-      # - name: Sleep and run 
-      #   run: |
-      #     sleep 20
-      #     docker ps
+        run: sudo -u postgres psql -c "ALTER USER postgres PASSWORD '${{ secrets.PASSWORD }}';"
 
       - name: Run tests
         run: npm run test
         env:
-          DATABASE_NAME: example
-          USERNAME: postgres
-          PASSWORD: postgres
-          DATABASE_HOST: 127.0.0.1
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
