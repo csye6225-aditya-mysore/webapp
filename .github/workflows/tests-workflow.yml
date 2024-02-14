@@ -27,7 +27,7 @@ jobs:
         run: sudo -u postgres psql -c "ALTER USER postgres PASSWORD '${{ secrets.PASSWORD }}';"
 
       - name: Create database 
-        run: createdb -h ${{ secrets.DATABASE_HOST }} -e ${{secrets.DATABASE_NAME}}
+        run: sudo -u postgres createdb -h ${{ secrets.DATABASE_HOST }} -e ${{secrets.DATABASE_NAME}}
 
       - name: Run tests
         run: npm run test
