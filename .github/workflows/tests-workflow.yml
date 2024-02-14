@@ -29,7 +29,7 @@ jobs:
         run: sudo -u ${{secrets.USERNAME}} psql -c "CREATE DATABASE ${{secrets.DATABASE_NAME}};"
 
       - name: Run tests
-        run: npm run test
+        run: npm run integration-test
         env:
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
           USERNAME: ${{ secrets.USERNAME }}

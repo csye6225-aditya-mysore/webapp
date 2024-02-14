@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha test --exit",
+    "unit-test": "mocha test/unit_test.js --exit",
+    "integration-test": "mocha test/user_test.js --exit",
     "server": "nodemon server.js"
   },
   "author": "",
