@@ -10,12 +10,6 @@ const username = process.env.USERNAME || "postgres";
 const password = process.env.PASSWORD ||  "postgres";
 const host = process.env.DATABASE_HOST || "localhost";
 
-const pg_client = new Client({
-    host: host,
-    user: username,
-    password: password,
-    port: 5432
-});
 
 const value = "123";
 
