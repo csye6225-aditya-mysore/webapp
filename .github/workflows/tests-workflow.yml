@@ -1,9 +1,9 @@
 name: integration-tests-workflow
 
 on:
-  push:
+  pull_request:
     branches:
-      - assignment3
+      - main
 
 jobs:
   integration-testing:
@@ -17,17 +17,16 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      # - run: sudo service docker start
       - name: Start postgresql service
         run: |
           sudo systemctl start postgresql.service
           pg_isready
 
       - name: Change user password
-        run: sudo -u postgres psql -c "ALTER USER postgres PASSWORD '${{ secrets.PASSWORD }}';"
+        run: sudo -u ${{secrets.USERNAME}} psql -c "ALTER USER ${{secrets.USERNAME}} PASSWORD '${{ secrets.PASSWORD }}';"
 
       - name: Create database 
-        run: sudo -u postgres psql -c "CREATE DATABASE ${{secrets.DATABASE_NAME}};"
+        run: sudo -u ${{secrets.USERNAME}} psql -c "CREATE DATABASE ${{secrets.DATABASE_NAME}};"
 
       - name: Run tests
         run: npm run test
