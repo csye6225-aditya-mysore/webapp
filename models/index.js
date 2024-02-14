@@ -35,16 +35,16 @@ const sequelize = new Sequelize(
 
 const initializeDB = async (dbObject) => {
     try{
-        console.log("Attempting to connect...")
-        console.log(host, username, password, dbName);
-        console.log(value);
-        await pg_client.connect();
-        const result = await pg_client.query(`SELECT datname FROM pg_catalog.pg_database WHERE datname = '${dbName}'`);
-        if(result.rowCount == 0){
-            await pg_client.query("CREATE DATABASE " + dbName);
-            console.log("Datbase created")
-        }
-        await pg_client.end();
+        // console.log("Attempting to connect...")
+        // console.log(host, username, password, dbName);
+        // console.log(value);
+        // await pg_client.connect();
+        // const result = await pg_client.query(`SELECT datname FROM pg_catalog.pg_database WHERE datname = '${dbName}'`);
+        // if(result.rowCount == 0){
+        //     await pg_client.query("CREATE DATABASE " + dbName);
+        //     console.log("Datbase created")
+        // }
+        // await pg_client.end();
         await dbObject.authenticate();
         await dbObject.sync({alter: true});
     }
