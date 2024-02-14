@@ -1,7 +1,5 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
-import pkg from "pg";
-const {Client} = pkg;
 
 dotenv.config();
 
@@ -10,8 +8,6 @@ const username = process.env.USERNAME || "postgres";
 const password = process.env.PASSWORD ||  "postgres";
 const host = process.env.DATABASE_HOST || "localhost";
 
-
-const value = "123";
 
 const sequelize = new Sequelize(
     dbName,
