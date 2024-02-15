@@ -12,4 +12,4 @@
 
 4. Testing
  - Run "npm run unit-test" for unit tests
- - Run "npm run integration-test" for integration tests
+ - Run "npm run integration-test" for integration tests 
