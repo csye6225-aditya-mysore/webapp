@@ -38,6 +38,7 @@ const createUser = async (req, res, next) => {
             id: newUser.id,
             first_name: newUser.first_name,
             last_name: newUser.last_name,
+            username: newUser.username,
             account_created: newUser.account_created,
             account_updated: newUser.account_updated
         });

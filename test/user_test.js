@@ -52,9 +52,10 @@ describe("User Routes integration tests", async () => {
 
         const getResponse = await request(app).get("/v1/user/self").auth(mockUser.username, updateUserBody.password, {type: "basic"});
         expect(getResponse.status).to.equal(200);
-        const {first_name, last_name} = getResponse.body;
+        const {first_name, last_name, username} = getResponse.body;
         expect(first_name).to.equal(updateUserBody.first_name);
         expect(last_name).to.equal(updateUserBody.last_name);
+        expect(username).to.equal(mockUser.username);
     })
 });
 
