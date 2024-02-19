@@ -1,10 +1,10 @@
-name: packer-validate-job
+name: packer-fmt-validate-job
 
 on: 
-  push:
+  pull_request:
     
     branches:
-      - assignment4
+      - main
   
 jobs:
   fmt-validate-packer:
