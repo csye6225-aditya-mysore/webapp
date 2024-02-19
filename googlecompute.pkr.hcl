@@ -24,7 +24,7 @@ build {
     destination = "/home/adityamysore002/"
   }
 
-  provisioner "fil" {
+  provisioner "file" {
 
     source      = "webapp.service"
     destination = "/home/adityamysore002/"
