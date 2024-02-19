@@ -1,0 +1,31 @@
+name: packer-validate-job
+
+on: 
+  push:
+    
+    branches:
+      - assignment4
+  
+jobs:
+  fmt-validate-packer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup packer 
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: "1.10.1"
+      
+      - name: Initialize packer
+        run: packer init googlecompute.pkr.hcl
+      
+      - name: Format packer template
+        run: packer fmt -check googlecompute.pkr.hcl
+      
+      - name: Validate packer template
+        run: packer validate googlecompute.pkr.hcl
+
+        
