@@ -18,6 +18,12 @@ jobs:
         id: setup
         with:
           version: "1.10.1"
+
+      - name: create webapp zip file 
+        run: |
+          cd ..
+          zip -r webapp.zip webapp-forked
+          cp webapp.zip webapp-forked/
       
       - name: Initialize packer
         run: packer init googlecompute.pkr.hcl
