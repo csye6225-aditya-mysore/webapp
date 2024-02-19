@@ -30,11 +30,10 @@ jobs:
       
       - name: create webapp zip file 
         run: |
-          cd ..
+          cd ../
           zip -r webapp.zip webapp-forked
           cp webapp.zip webapp-forked/
-          cd webapp-forked
-          ls 
+          cd -
       
       - name: Initialize packer
         run: packer init googlecompute.pkr.hcl
