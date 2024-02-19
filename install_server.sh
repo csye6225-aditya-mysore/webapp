@@ -19,6 +19,14 @@ cd $SERVER_FOLDER
 # Install dependencies - Final step before you run the server
 npm install 
 
+# Adding a new user csye6225 and changing the ownership of all artifacts to csye6225
+sudo adduser csye6225 --shell /usr/sbin/nologin
+sudo chown -R csye6225 /home/adityamysore002/webapp
+sudo chown -R csye6225 /home/adityamysore002/webapp.zip
+
+sudo chgrp -R csye6225 /home/adityamysore002/webapp
+sudo chgrp -R csye6225 /home/adityamysore002/webapp.zip
+
 sudo mv /home/adityamysore002/webapp.service /etc/systemd/system/webapp.service
 sudo sed -i -e "s/enforcing/disabled/g" /etc/selinux/config # disabling SElinux
 sudo chmod 744 /etc/systemd/system/webapp.service
