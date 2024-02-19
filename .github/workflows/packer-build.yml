@@ -1,0 +1,23 @@
+name: packer-build-vm-image
+
+on: 
+  push:
+    
+    branches:
+      - assignment4
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          credentials_json: '${{ secrets.GCLOUD_CRED }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v2'
+
+      - name: 'Use gcloud CLI'
+        run: 'gcloud info'
