@@ -1,0 +1,20 @@
+[Unit]
+Description=Webapp systemd file
+Documentation=https://example.com
+After=network.target
+
+[Service]
+Type=simple
+User=adityamysore002
+Group=adityamysore002
+WorkingDirectory=/home/adityamysore002
+ExecStart=/home/adityamysore002/.nvm/versions/node/v16.18.0/bin/node /home/adityamysore002/webapp/server.js
+Restart=always
+RestartSec=3
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=adityamysore002
+
+[Install]
+WantedBy=multi-user.target
+

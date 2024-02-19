@@ -131,7 +131,7 @@ dist
 
 # Cache objects
 packer_cache/
-
+.DS_Store
 # Crash log
 crash.log
 
@@ -145,3 +145,4 @@ crash.log
 
 # For built boxes
 *.box
+*.zip
