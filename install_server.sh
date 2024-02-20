@@ -10,7 +10,7 @@ echo "loading bash completion"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 ZIP_FILE=~/webapp.zip
-SERVER_FOLDER=~/webapp-forked
+SERVER_FOLDER=~/webapp
 
 unzip $ZIP_FILE
 
@@ -21,10 +21,10 @@ npm install
 
 # Adding a new user csye6225 and changing the ownership of all artifacts to csye6225
 sudo adduser csye6225 --shell /usr/sbin/nologin
-sudo chown -R csye6225 /home/adityamysore002/webapp-forked
+sudo chown -R csye6225 /home/adityamysore002/webapp
 sudo chown -R csye6225 /home/adityamysore002/webapp.zip
 
-sudo chgrp -R csye6225 /home/adityamysore002/webapp-forked
+sudo chgrp -R csye6225 /home/adityamysore002/webapp
 sudo chgrp -R csye6225 /home/adityamysore002/webapp.zip
 
 sudo mv /home/adityamysore002/webapp.service /etc/systemd/system/webapp.service
