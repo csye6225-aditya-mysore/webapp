@@ -28,8 +28,9 @@ sudo chgrp -R csye6225 /home/adityamysore002/webapp
 sudo chgrp -R csye6225 /home/adityamysore002/webapp.zip
 
 sudo mv /home/adityamysore002/webapp.service /etc/systemd/system/webapp.service
+sudo chown -R csye6225 /etc/systemd/system/webapp.service
+sudo chgrp -R csye6225 /etc/systemd/system/webapp.service
 sudo sed -i -e "s/enforcing/disabled/g" /etc/selinux/config # disabling SElinux
-sudo chmod 744 /etc/systemd/system/webapp.service
 sudo setenforce 0
 sudo systemctl daemon-reload
 sudo systemctl enable webapp.service # systemctl will now pick up the webapp-service
