@@ -5,10 +5,13 @@ on:
     branches:
       - main
 
+    types: [closed, opened, synchronize]
+
 jobs:
   integration-testing:
     runs-on: ubuntu-20.04
         
+    if: github.event.pull_request.merged == true || github.event.action == "synchronize" || github.event.action == "opened"
     steps:
       - name: Checkout branch 
         uses: actions/checkout@v4
