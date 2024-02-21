@@ -22,7 +22,7 @@ build {
   provisioner "file" {
     source      = "webapp.zip"
     destination = "/home/adityamysore002/"
-    
+
   }
 
   provisioner "file" {
