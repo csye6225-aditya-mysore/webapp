@@ -11,7 +11,7 @@ source "googlecompute" "packer-image-creation" {
   project_id          = "dev-aditya-mysore"
   source_image_family = "centos-stream-8"
   zone                = "us-east1-b"
-  image_name          = "practice-image-centos-8"
+  image_name          = "dev-centos-8-${formatdate("YYYY_MM_DD_hh_mm_ss", timestamp())}"
   image_description   = "CSYE6225 image creation practice"
   ssh_username        = "adityamysore002"
 }
