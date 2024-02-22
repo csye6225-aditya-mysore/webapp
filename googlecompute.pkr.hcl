@@ -14,6 +14,7 @@ source "googlecompute" "packer-image-creation" {
   image_name          = "dev-centos-8-${formatdate("YYYY-MM-DD-hh-mm-ss", timestamp())}"
   image_description   = "CSYE6225 image creation practice"
   ssh_username        = "adityamysore002"
+  
 }
 
 build {
