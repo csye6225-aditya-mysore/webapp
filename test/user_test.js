@@ -38,7 +38,7 @@ describe("User Routes integration tests", async () => {
         console.log(getResponse.body);
         expect(getResponse.status).to.equal(200);
         const {first_name, last_name, username} = getResponse.body;
-        expect("aditya").to.equal(mockUser.first_name);
+        expect(first_name).to.equal(mockUser.first_name);
         expect(last_name).to.equal(mockUser.last_name);
         expect(username).to.equal(mockUser.username);
         // done();
