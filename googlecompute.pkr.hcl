@@ -7,7 +7,7 @@ packer {
   }
 }
 
-source "googlecompute" "packer-image-creation" {
+source "googlecompute" "packer-image-creation" 
   project_id          = "dev-aditya-mysore"
   source_image_family = "centos-stream-8"
   zone                = "us-east1-b"
