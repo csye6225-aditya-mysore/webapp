@@ -1,6 +1,6 @@
 [Unit]
 Description=Webapp systemd file
-Documentation=https://example.com
+ConditionPathExists=/home/adityamysore002/webapp/.env
 After=network.target
 
 [Service]
