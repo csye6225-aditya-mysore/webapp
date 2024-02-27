@@ -33,5 +33,5 @@ sudo chgrp -R csye6225 /etc/systemd/system/webapp.service
 sudo sed -i -e "s/enforcing/disabled/g" /etc/selinux/config # disabling SElinux
 sudo setenforce 0
 sudo systemctl daemon-reload
-sudo systemctl enable webapp.service # systemctl will now pick up the webapp-service
+# sudo systemctl enable webapp.service # systemctl will now pick up the webapp-service
 # sudo systemctl enable /etc/systemd/system/webapp.service
