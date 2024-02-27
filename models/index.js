@@ -15,11 +15,7 @@ const sequelize = new Sequelize(
     password,
     {
         host: host,
-        dialect: "postgres",
-        pool: {
-            max: 10,
-		    idle: 20000,
-        }
+        dialect: "postgres"
     }
 );
 
