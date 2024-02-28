@@ -4,7 +4,7 @@
 sudo mv /tmp/webapp.zip /opt/webapp.zip
 ZIP_FILE=/opt/webapp.zip
 SERVER_FOLDER=/opt/webapp
-
+cd /opt
 sudo unzip $ZIP_FILE
 
 cd $SERVER_FOLDER
