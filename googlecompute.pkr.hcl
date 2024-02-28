@@ -21,14 +21,14 @@ build {
 
   provisioner "file" {
     source      = "webapp.zip"
-    destination = "/opt/"
+    destination = "/tmp/"
 
   }
 
   provisioner "file" {
 
     source      = "webapp.service"
-    destination = "/opt/"
+    destination = "/tmp/"
 
   }
 
