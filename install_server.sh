@@ -1,33 +1,21 @@
 #!/bin/bash
 
-# Load nvm first 
-export NVM_DIR="$HOME/.nvm"
+ZIP_FILE=/opt/webapp.zip
+SERVER_FOLDER=/opt/webapp
 
-echo "loading nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
-echo "loading bash completion"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-ZIP_FILE=~/webapp.zip
-SERVER_FOLDER=~/webapp
-
-unzip $ZIP_FILE
+sudo unzip $ZIP_FILE
 
 cd $SERVER_FOLDER
 
 # Install dependencies - Final step before you run the server
-npm install 
+sudo npm install 
 
 # Adding a new user csye6225 and changing the ownership of all artifacts to csye6225
 sudo adduser csye6225 --shell /usr/sbin/nologin
-sudo chown -R csye6225 /home/adityamysore002/webapp
-sudo chown -R csye6225 /home/adityamysore002/webapp.zip
+sudo chown -R csye6225:csye6225 /opt/webapp
+sudo chown -R csye6225:csye6225 /opt/webapp.zip
 
-sudo chgrp -R csye6225 /home/adityamysore002/webapp
-sudo chgrp -R csye6225 /home/adityamysore002/webapp.zip
-
-sudo mv /home/adityamysore002/webapp.service /etc/systemd/system/webapp.service
+sudo mv /opt/webapp.service /etc/systemd/system/webapp.service
 sudo chown -R csye6225 /etc/systemd/system/webapp.service
 sudo chgrp -R csye6225 /etc/systemd/system/webapp.service
 sudo sed -i -e "s/enforcing/disabled/g" /etc/selinux/config # disabling SElinux
