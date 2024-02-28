@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+sudo mv /tmp/webapp.zip /opt/webapp.zip
 ZIP_FILE=/opt/webapp.zip
 SERVER_FOLDER=/opt/webapp
 
@@ -15,7 +17,7 @@ sudo adduser csye6225 --shell /usr/sbin/nologin
 sudo chown -R csye6225:csye6225 /opt/webapp
 sudo chown -R csye6225:csye6225 /opt/webapp.zip
 
-sudo mv /opt/webapp.service /etc/systemd/system/webapp.service
+sudo mv /tmp/webapp.service /etc/systemd/system/webapp.service
 sudo chown -R csye6225 /etc/systemd/system/webapp.service
 sudo chgrp -R csye6225 /etc/systemd/system/webapp.service
 sudo sed -i -e "s/enforcing/disabled/g" /etc/selinux/config # disabling SElinux
