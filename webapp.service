@@ -1,15 +1,15 @@
 [Unit]
 Description=Webapp systemd file
-ConditionPathExists=/home/adityamysore002/webapp/.env
+ConditionPathExists=/opt/webapp/.env
 After=network.target
 
 [Service]
 Type=simple
 User=csye6225
 Group=csye6225
-EnvironmentFile=/home/adityamysore002/webapp/.env
-WorkingDirectory=/home/adityamysore002
-ExecStart=/home/adityamysore002/.nvm/versions/node/v16.18.0/bin/node /home/adityamysore002/webapp/server.js
+EnvironmentFile=/opt/webapp/.env
+WorkingDirectory=/opt
+ExecStart=/usr/bin/node /opt/webapp/server.js
 Restart=always
 RestartSec=3
 StandardOutput=syslog
