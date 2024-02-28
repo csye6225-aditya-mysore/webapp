@@ -31,6 +31,7 @@ const initializeDB = async (dbObject) => {
         //     console.log("Datbase created")
         // }
         // await pg_client.end();
+        console.log(dbName, host, username, password);
         await dbObject.authenticate();
         await dbObject.sync({alter: true});
     }

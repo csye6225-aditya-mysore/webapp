@@ -9,7 +9,7 @@
  - Unzip the file and go into the folder structure
  - First go to the path that contains package.json and run "npm install"
  - Then run "npm run server" to start server
-
+ 
 4. Testing
  - Run "npm run unit-test" for unit tests
  - Run "npm run integration-test" for integration tests 
