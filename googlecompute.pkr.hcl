@@ -9,7 +9,7 @@ packer {
 
 source "googlecompute" "packer-image-creation" {
   project_id          = "dev-aditya-mysore"
-  source_image_family = "centos-stream-8"
+  source_image_family = "centos-7"
   zone                = "us-east1-b"
   image_name          = "dev-centos-8-${formatdate("YYYY-MM-DD-hh-mm-ss", timestamp())}"
   image_description   = "CSYE6225 image creation practice"
