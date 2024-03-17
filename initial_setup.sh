@@ -14,4 +14,4 @@ sudo bash add-google-cloud-ops-agent-repo.sh --also-install
 cd /var/log
 sudo mkdir webapplogs
 cd webapplogs
-sudo vi webapp-logs
+sudo touch webapp-logs
