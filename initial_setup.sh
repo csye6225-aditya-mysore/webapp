@@ -16,5 +16,5 @@ sudo mkdir webapplogs
 cd webapplogs
 sudo touch webapp-logs
 
-sudo cat /tmp/logconfig.yaml > /etc/google-cloud-ops-agent/config.yaml
+sudo cp /tmp/logconfig.yaml /etc/google-cloud-ops-agent/config.yaml
 sudo systemctl restart google-cloud-ops-agent
