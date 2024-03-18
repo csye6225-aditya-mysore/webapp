@@ -21,7 +21,7 @@ sudo mv /tmp/webapp.service /etc/systemd/system/webapp.service
 sudo chown -R csye6225 /etc/systemd/system/webapp.service
 sudo chgrp -R csye6225 /etc/systemd/system/webapp.service
 
-sudo chown -R csye6225:csye6225 /var/logs/webapplogs # logs folder for webapp
+sudo chown -R csye6225:csye6225 /var/log/webapplogs # logs folder for webapp
 
 sudo sed -i -e "s/enforcing/disabled/g" /etc/selinux/config # disabling SElinux
 sudo setenforce 0
