@@ -3,13 +3,18 @@ import winston from "winston";
 
 // dotenv.config();
 
+const customFormatter = winston.format((info) => {
+    info.severity = info.level;
+    return info;
+});
+
 const logger = winston.createLogger({
     level: "debug",
     format: winston.format.combine(
         winston.format.timestamp({
           format: 'YYYY-MM-DD HH:mm:ss'
         }),
-    
+        customFormatter(),
         winston.format.json()
       ),
     transports: []
