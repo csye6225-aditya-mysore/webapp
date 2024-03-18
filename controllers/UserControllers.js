@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import { DataTypes } from "sequelize";
 import {v4} from "uuid";
 import { lengthValidation } from "../models/validations.js";
+import logger from "../utils/logger.js";
 
 const createUser = async (req, res, next) => {
     if(Object.keys(req.query).length > 0){
@@ -34,6 +35,7 @@ const createUser = async (req, res, next) => {
             password: hashedPassword,
             account_updated: new Date(),
         });
+        logger.log("info", "User creted successfully: " + newUser.username);
         return res.status(201).json({
             id: newUser.id,
             first_name: newUser.first_name,
@@ -45,6 +47,7 @@ const createUser = async (req, res, next) => {
     }
     catch(error){
         // console.log(error);
+        logger.log('error', error);
         return res.status(400).send();
     }
     
@@ -64,9 +67,11 @@ const getUser = async (req, res, next) => {
             account_created: req.user.account_created,
             account_updated: req.user.account_updated
         }
+        logger.log("info", "User retrieved successfully: " + objectToSend.username);
         return res.status(200).send(objectToSend);
     }
     catch(error){
+        logger.log('error', error);
         return res.status(400).send();
     }
 }
@@ -105,11 +110,12 @@ const updateUser = async (req, res, next) => {
                 id: req.user.id
             }
         });
-
+        logger.log("info", "User updated successfully! : " + req.user.username);
         return res.status(204).send();
 
     }
     catch(error){
+        logger.log('error', error);
         // console.log(error);
         return res.status(400).send();
     }
