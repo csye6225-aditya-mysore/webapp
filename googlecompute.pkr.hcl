@@ -33,13 +33,15 @@ build {
 
   }
 
+  provisioner "file" {
+    source = "logconfig.yaml"
+    destination = "/tmp/"
+  }
+
   provisioner "shell" {
     script = "initial_setup.sh"
   }
 
-  // provisioner "shell" {
-  //   script = "install_db.sh"
-  // }
 
   provisioner "shell" {
     script = "install_node.sh"
