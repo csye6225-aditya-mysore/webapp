@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "unit-test": "mocha test/unit_test.js --exit",
-    "integration-test": "mocha test/user_test.js --exit",
-    "server": "nodemon server.js"
+    "unit-test": "export NODE_ENV=test && mocha test/unit_test.js --exit",
+    "integration-test": "export NODE_ENV=test && mocha test/user_test.js --exit",
+    "server": "export NODE_ENV=dev && nodemon server.js"
   },
   "author": "",
   "license": "ISC",

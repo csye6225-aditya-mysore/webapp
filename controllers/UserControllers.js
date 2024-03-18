@@ -3,7 +3,7 @@ import User from "../models/User.js";
 import { DataTypes } from "sequelize";
 import {v4} from "uuid";
 import { lengthValidation } from "../models/validations.js";
-import {logger, fileTransport} from "../utils/logger.js";
+import logger from "../utils/logger.js";
 
 // logger.add(fileTransport);
 

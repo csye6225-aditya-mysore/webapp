@@ -4,10 +4,6 @@ import { describe } from "mocha";
 import { initializeDB, sequelize } from "../models/index.js";
 import { expect } from "chai";
 import {faker} from "@faker-js/faker";
-import {logger, fileTransport, consoleTransport} from "../utils/logger.js";
-
-logger.remove(fileTransport);
-logger.add(consoleTransport);
 
 // Used faker package to generate mock data
 const mockUser = {
