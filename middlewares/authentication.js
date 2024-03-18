@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+import logger from "../utils/logger.js";
 
 const getEmailAndPasswordFromToken = (token) => {
     const splitToken = token.split(" ")[1];
@@ -28,13 +29,16 @@ const auth = async (req, res, next) => {
         }
         const verifyPassword = await bcrypt.compare(password, user.password);
         if(!verifyPassword){
+            logger.error("Authorization failed");
             throw new Error("User not authorized");
         }
         req.user = user;
+        logger.info("Authorization successfull");
         next();
     }
     catch(error){
         // console.log(error);
+        logger.error(error);
         return res.status(401).send();
     }
 };
