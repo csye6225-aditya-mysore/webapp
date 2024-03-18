@@ -1,4 +1,4 @@
-import winston, { info } from "winston";
+import winston from "winston";
 // import dotenv from "dotenv";
 
 // dotenv.config();
@@ -10,11 +10,7 @@ const logger = winston.createLogger({
           format: 'YYYY-MM-DD HH:mm:ss'
         }),
     
-        winston.format.json(),
-        winston.format(info => {
-            info.severity = info.level;
-            return info;
-        })
+        winston.format.json()
       ),
     transports: []
 });
