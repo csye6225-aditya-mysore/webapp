@@ -1,4 +1,4 @@
-import winston from "winston";
+import winston, { info } from "winston";
 // import dotenv from "dotenv";
 
 // dotenv.config();
@@ -11,8 +11,11 @@ const logger = winston.createLogger({
         }),
     
         winston.format.json(),
+        winston.format(info => {
+            info.severity = info.level;
+            return info;
+        })
       ),
-    defaultMeta: "webapp-service",
     transports: []
 });
 
