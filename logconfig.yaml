@@ -9,8 +9,9 @@ logging:
     my-app-processor:
       type: parse_json
       time_key: time
-      time_format: "%Y-%m-%dT%H:%M:%S.%L%Z"
+      time_format: "%Y-%m-%d %H:%M:%S.%L%Z"
   service:
+    log_level: debug
     pipelines:
       default_pipeline:
         receivers: [my-app-receiver]
