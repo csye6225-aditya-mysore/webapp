@@ -1,6 +1,7 @@
 import express from "express";
 import {sequelize} from "../models/index.js";
 import { checkValidRoute } from "../middlewares/index.js";
+import logger from "../utils/logger.js";
 
 const healthRouter = express.Router();
 
@@ -12,9 +13,11 @@ healthRouter.get("/", async (req, res) => {
     try{
         await sequelize.authenticate();
         console.log("Database connected!");
+        logger.info("Database connected!");
         return res.status(200).send();
     }
     catch(error){
+        logger.error(error);
         return res.status(503).send();
     }
 });
