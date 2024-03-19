@@ -3,7 +3,7 @@ import User from "../models/User.js";
 import { DataTypes } from "sequelize";
 import {v4} from "uuid";
 import { lengthValidation } from "../models/validations.js";
-import logger from "../utils/logger.js";
+import logger from "../utils/log.js";
 
 // logger.add(fileTransport);
 
@@ -38,6 +38,8 @@ const createUser = async (req, res, next) => {
             account_updated: new Date(),
         });
         logger.info("User created successfully: " + newUser.username);
+        logger.warn("User created successfully: " + newUser.username);
+        logger.debug("User created successfully: " + newUser.username);
         return res.status(201).json({
             id: newUser.id,
             first_name: newUser.first_name,
@@ -49,7 +51,8 @@ const createUser = async (req, res, next) => {
     }
     catch(error){
         // console.log(error);
-        logger.error(error);
+        logger.warn("There might be some error with request body");
+        logger.error(error.message);
         return res.status(400).send();
     }
     
@@ -69,11 +72,11 @@ const getUser = async (req, res, next) => {
             account_created: req.user.account_created,
             account_updated: req.user.account_updated
         }
-        logger.info("User retrieved successfully: " + objectToSend.username);
+        logger.debug("User retrieved successfully: " + objectToSend.username);
         return res.status(200).send(objectToSend);
     }
     catch(error){
-        logger.error( error);
+        logger.error( error.message);
         return res.status(400).send();
     }
 }
@@ -117,7 +120,8 @@ const updateUser = async (req, res, next) => {
 
     }
     catch(error){
-        logger.error(error);
+        logger.warn("There might be some error with user update");
+        logger.error(error.message);
         // console.log(error);
         return res.status(400).send();
     }

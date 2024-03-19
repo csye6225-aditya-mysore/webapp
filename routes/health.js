@@ -1,7 +1,7 @@
 import express from "express";
 import {sequelize} from "../models/index.js";
 import { checkValidRoute } from "../middlewares/index.js";
-import logger from "../utils/logger.js";
+import logger from "../utils/log.js";
 
 const healthRouter = express.Router();
 

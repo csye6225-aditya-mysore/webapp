@@ -19,6 +19,8 @@ logging:
           map_values:
             "info": "INFO"
             "error": "ERROR"
+            "warn": "WARNING"
+            "debug": "DEBUG"
 
   service:
     pipelines:
