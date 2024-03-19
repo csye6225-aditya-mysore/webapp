@@ -28,14 +28,14 @@ const consoleTransport = new winston.transports.Console({
 logger.add(consoleTransport);
 // console.log(process.env.NODE_ENV)
 
-// if(process.env.NODE_ENV !== "test"){
-//     logger.add(new winston.transports.File({
-//         name: "file",
-//         filename: "/var/log/webapplogs/webapp-logs",
-//         colorize: true,
-//         showLevel: true
-//     }));
-// }
+if(process.env.NODE_ENV !== "test"){
+    logger.add(new winston.transports.File({
+        name: "file",
+        filename: "/var/log/webapplogs/webapp-logs",
+        colorize: true,
+        showLevel: true
+    }));
+}
 
 // logger.add(fileTransport);
 
