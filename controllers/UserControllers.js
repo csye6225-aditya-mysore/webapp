@@ -38,7 +38,6 @@ const createUser = async (req, res, next) => {
             account_updated: new Date(),
         });
         logger.info("User created successfully: " + newUser.username);
-        logger.warn("User created successfully: " + newUser.username);
         logger.debug("User created successfully: " + newUser.username);
         return res.status(201).json({
             id: newUser.id,
