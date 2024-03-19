@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
-import logger from "../utils/log";
+import logger from "../utils/log.js";
 
 dotenv.config();
 
