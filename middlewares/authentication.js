@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
-import logger from "../utils/logger.js";
+import logger from "../utils/log.js";
 
 const getEmailAndPasswordFromToken = (token) => {
     const splitToken = token.split(" ")[1];
@@ -38,7 +38,7 @@ const auth = async (req, res, next) => {
     }
     catch(error){
         // console.log(error);
-        logger.error(error);
+        logger.error(error.message);
         return res.status(401).send();
     }
 };
