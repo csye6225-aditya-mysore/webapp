@@ -51,7 +51,7 @@ const createUser = async (req, res, next) => {
     catch(error){
         // console.log(error);
         logger.warn("There might be some error with request body");
-        logger.error(error);
+        logger.error(error.message);
         return res.status(400).send();
     }
     
@@ -75,7 +75,7 @@ const getUser = async (req, res, next) => {
         return res.status(200).send(objectToSend);
     }
     catch(error){
-        logger.error( error);
+        logger.error( error.message);
         return res.status(400).send();
     }
 }
@@ -120,7 +120,7 @@ const updateUser = async (req, res, next) => {
     }
     catch(error){
         logger.warn("There might be some error with user update");
-        logger.error(error);
+        logger.error(error.message);
         // console.log(error);
         return res.status(400).send();
     }
