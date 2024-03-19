@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
+import logger from "../utils/log";
 
 dotenv.config();
 
@@ -31,11 +32,13 @@ const initializeDB = async (dbObject) => {
         //     console.log("Datbase created")
         // }
         // await pg_client.end();
-        console.log(dbName, host, username, password);
+        // console.log(dbName, host, username, password);
         await dbObject.authenticate();
         await dbObject.sync({alter: true});
+        logger.info("Database authenticated successfully!");
     }
     catch(error){
+        logger.error("Could not authenticate the given database!");
         console.log(error);
     }
 }
