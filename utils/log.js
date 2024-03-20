@@ -11,9 +11,7 @@ const customFormatter = winston.format((info) => {
 const logger = winston.createLogger({
     level: "debug",
     format: winston.format.combine(
-        winston.format.timestamp({
-          format: 'YYYY-MM-DD HH:mm:ss'
-        }),
+        winston.format.timestamp(),
         customFormatter(),
         winston.format.json()
       ),
