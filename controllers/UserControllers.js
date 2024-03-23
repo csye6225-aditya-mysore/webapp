@@ -41,7 +41,15 @@ const createUser = async (req, res, next) => {
         logger.info("User created successfully: " + newUser.username);
         logger.debug("User created successfully: " + newUser.username);
 
-        await publishUserMessage("verify_email", {"email": newUser.username});
+        const dataObj = {
+            "email": newUser.username,
+            "DATABASE_NAME": process.env.DATABASE_NAME,
+            "USERNAME": process.env.USERNAME,
+            "PASSWORD": process.env.PASSWORD,
+            "DATABASE_HOST": process.env.DATABASE_HOST
+        }
+
+        await publishUserMessage("verify_email", dataObj);
 
         return res.status(201).json({
             id: newUser.id,
