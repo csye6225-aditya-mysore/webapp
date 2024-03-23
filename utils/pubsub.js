@@ -4,7 +4,8 @@ import logger from "../utils/log.js";
 const pubSubClient = new PubSub({projectId: "dev-aditya-mysore"});
 
 const publishUserMessage = async (topicName, data) => {
-    const dataBuffer = Buffer.from(data);
+    const stringData = JSON.stringify(data);
+    const dataBuffer = Buffer.from(stringData);
 
     try{
         const messageId = await pubSubClient.topic(topicName).publishMessage({data: dataBuffer});
