@@ -41,7 +41,7 @@ const createUser = async (req, res, next) => {
         logger.info("User created successfully: " + newUser.username);
         logger.debug("User created successfully: " + newUser.username);
 
-        publishUserMessage("verify_email", {"email": newUser.username});
+        await publishUserMessage("verify_email", {"email": newUser.username});
 
         return res.status(201).json({
             id: newUser.id,
