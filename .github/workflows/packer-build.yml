@@ -5,14 +5,14 @@ on:
     
     branches:
       - main
-    types:
-      - closed
+    # types:
+    #   - closed
 
 jobs:
   build-image:
     runs-on: ubuntu-latest
 
-    if: ${{ github.event.pull_request.merged == true }}
+    # if: ${{ github.event.pull_request.merged == true }}
     steps:
 
       - name: Checking out code
