@@ -5,8 +5,32 @@ import {v4} from "uuid";
 import { lengthValidation } from "../models/validations.js";
 import logger from "../utils/log.js";
 import publishUserMessage from "../utils/pubsub.js";
+import jwt from "jsonwebtoken";
 
 // logger.add(fileTransport);
+
+const verifyEmail = async (req, res, next) => {
+    const token = req.query.token;
+    try{
+        const verifiedUserPayload = await jwt.verify(token, "secret_key");
+        const userObj = await User.findOne({
+            where: {
+                username: verifiedUserPayload.email
+            }
+        });
+        if(userObj.verified){
+            return res.status(200).json({msg: "User already verified"});
+        }
+        // console.log(verifiedUserPayload);
+        userObj.verified = true;
+        await userObj.save();
+        logger.info("User verified");
+        return res.status(200).json({msg: "Email verified!"});
+    }catch(error){
+        logger.error(error.message);
+        return res.status(400).json({msg: "Could not verify your email, probably the link expired"});
+    }
+}
 
 const createUser = async (req, res, next) => {
     if(Object.keys(req.query).length > 0){
@@ -30,19 +54,28 @@ const createUser = async (req, res, next) => {
         
         lengthValidation(password);
         const hashedPassword = await bcrypt.hash(password, 10);
+        var verified = false;
+        if(process.env.NODE_ENV === "test"){
+            verified = true;
+        }
         const newUser = await User.create({
             id: v4(),
             first_name: first_name,
             last_name: last_name,
             username: username,
             password: hashedPassword,
+            verified: verified,
             account_updated: new Date(),
         });
         logger.info("User created successfully: " + newUser.username);
         logger.debug("User created successfully: " + newUser.username);
 
+        const token = jwt.sign({email: newUser.username}, "secret_key", { expiresIn: "2m" });
+
+        // console.log("token :   ", token);
         const dataObj = {
             "email": newUser.username,
+            "token": token,
             "DATABASE_NAME": process.env.DATABASE_NAME,
             "USERNAME": process.env.USERNAME,
             "PASSWORD": process.env.PASSWORD,
@@ -75,6 +108,10 @@ const getUser = async (req, res, next) => {
     }
     try{
         console.log("Authenticated!");
+        if(!req.user.verified){
+            logger.error("User not verified");
+            return res.status(400).send();
+        }
         const objectToSend = {
             id: req.user.id,
             first_name: req.user.first_name,
@@ -97,6 +134,11 @@ const updateUser = async (req, res, next) => {
         return res.status(400).send();
     }
     try{
+        if(!req.user.verified){
+            console.log("User not verified");
+            logger.error("User not verified");
+            return res.status(400).send();
+        }
         const body = req.body;
         // console.log(Object.keys(body).length);
         if(Object.keys(body).length == 0){
@@ -138,4 +180,4 @@ const updateUser = async (req, res, next) => {
     }
 }
 
-export {createUser, getUser, updateUser};
+export {createUser, getUser, updateUser, verifyEmail};
