@@ -38,6 +38,10 @@ const User = sequelize.define("User", {
             }
         }
     },
+    verified: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     account_created: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
