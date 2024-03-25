@@ -5,23 +5,31 @@ import {v4} from "uuid";
 import { lengthValidation } from "../models/validations.js";
 import logger from "../utils/log.js";
 import publishUserMessage from "../utils/pubsub.js";
-import jwt from "jsonwebtoken";
-
 // logger.add(fileTransport);
 
 const verifyEmail = async (req, res, next) => {
     const token = req.query.token;
+    const queryEmail = req.query.email;
     try{
-        const verifiedUserPayload = await jwt.verify(token, "secret_key");
         const userObj = await User.findOne({
             where: {
-                username: verifiedUserPayload.email
+                username: queryEmail
             }
         });
         if(userObj.verified){
             return res.status(200).json({msg: "User already verified"});
         }
         // console.log(verifiedUserPayload);
+        let tokenTime = userObj.tokenTimestamp;
+        let expiryTime = new Date(tokenTime.getTime() + (2 * 60 * 1000));
+        let currentTime = new Date().getTime();
+        if(currentTime > expiryTime){
+            logger.error(error.message);
+            return res.status(400).json({msg: "Could not verify your email, probably the link expired"});
+        }
+        if(userObj.token != token){
+            return res.status(400).json({msg: "Could not verify your email"});
+        }
         userObj.verified = true;
         await userObj.save();
         logger.info("User verified");
@@ -58,6 +66,7 @@ const createUser = async (req, res, next) => {
         if(process.env.NODE_ENV === "test"){
             verified = true;
         }
+        const token = v4().toString();
         const newUser = await User.create({
             id: v4(),
             first_name: first_name,
@@ -70,7 +79,6 @@ const createUser = async (req, res, next) => {
         logger.info("User created successfully: " + newUser.username);
         logger.debug("User created successfully: " + newUser.username);
 
-        const token = jwt.sign({email: newUser.username}, "secret_key", { expiresIn: "2m" });
 
         // console.log("token :   ", token);
         const dataObj = {
