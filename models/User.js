@@ -42,6 +42,12 @@ const User = sequelize.define("User", {
         type: DataTypes.BOOLEAN,
         defaultValue: false
     },
+    tokenTimestamp: {
+        type: DataTypes.DATE,
+    },
+    token: {
+        type: DataTypes.STRING
+    },
     account_created: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
