@@ -9,11 +9,10 @@ import publishUserMessage from "../utils/pubsub.js";
 
 const verifyEmail = async (req, res, next) => {
     const token = req.query.token;
-    const queryEmail = req.query.email;
     try{
         const userObj = await User.findOne({
             where: {
-                username: queryEmail
+                token: token
             }
         });
         if(userObj.verified){
@@ -24,10 +23,11 @@ const verifyEmail = async (req, res, next) => {
         let expiryTime = new Date(tokenTime.getTime() + (2 * 60 * 1000));
         let currentTime = new Date().getTime();
         if(currentTime > expiryTime){
-            logger.error(error.message);
+            logger.error("Could not verify your email, probably the link expired");
             return res.status(400).json({msg: "Could not verify your email, probably the link expired"});
         }
         if(userObj.token != token){
+            logger.error( "Could not verify your email");
             return res.status(400).json({msg: "Could not verify your email"});
         }
         userObj.verified = true;
