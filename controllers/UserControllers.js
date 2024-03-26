@@ -5,7 +5,10 @@ import {v4} from "uuid";
 import { lengthValidation } from "../models/validations.js";
 import logger from "../utils/log.js";
 import publishUserMessage from "../utils/pubsub.js";
+import dotenv from "dotenv";
 // logger.add(fileTransport);
+
+dotenv.config();
 
 const verifyEmail = async (req, res, next) => {
     const token = req.query.token;
@@ -83,14 +86,13 @@ const createUser = async (req, res, next) => {
         // console.log("token :   ", token);
         const dataObj = {
             "email": newUser.username,
-            "token": token,
             "DATABASE_NAME": process.env.DATABASE_NAME,
             "USERNAME": process.env.USERNAME,
             "PASSWORD": process.env.PASSWORD,
             "DATABASE_HOST": process.env.DATABASE_HOST
         }
 
-        await publishUserMessage("verify_email", dataObj);
+        await publishUserMessage(process.env.PUBSUB, dataObj);
 
         return res.status(201).json({
             id: newUser.id,
