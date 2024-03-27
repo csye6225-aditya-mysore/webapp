@@ -85,11 +85,7 @@ const createUser = async (req, res, next) => {
 
         // console.log("token :   ", token);
         const dataObj = {
-            "email": newUser.username,
-            "DATABASE_NAME": process.env.DATABASE_NAME,
-            "USERNAME": process.env.USERNAME,
-            "PASSWORD": process.env.PASSWORD,
-            "DATABASE_HOST": process.env.DATABASE_HOST
+            "email": newUser.username
         }
 
         await publishUserMessage(process.env.PUBSUB, dataObj);
