@@ -10,8 +10,15 @@ healthRouter.get("/", async (req, res) => {
     if(Object.keys(req.body).length > 0 || req.get("Content-Type") != undefined || Object.keys(req.query).length > 0){
         return res.status(400).send();
     }
+
+    const timeoutPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject("Connection timeout");
+        }, 5000);
+    });
+
     try{
-        await sequelize.authenticate();
+        const val = await Promise.race([sequelize.authenticate(), timeoutPromise]);
         console.log("Database connected!");
         logger.info("Database connected!");
         return res.status(200).send();
