@@ -27,11 +27,11 @@ const verifyEmail = async (req, res, next) => {
         let currentTime = new Date().getTime();
         if(currentTime > expiryTime){
             logger.error("Could not verify your email, probably the link expired");
-            return res.status(400).json({msg: "Could not verify your email, probably the link expired"});
+            return res.status(403).json({msg: "Could not verify your email, probably the link expired"});
         }
         if(userObj.token != token){
             logger.error( "Could not verify your email");
-            return res.status(400).json({msg: "Could not verify your email"});
+            return res.status(403).json({msg: "Could not verify your email"});
         }
         userObj.verified = true;
         await userObj.save();
@@ -39,7 +39,7 @@ const verifyEmail = async (req, res, next) => {
         return res.status(200).json({msg: "Email verified!"});
     }catch(error){
         logger.error(error.message);
-        return res.status(400).json({msg: "Could not verify your email, probably the link expired"});
+        return res.status(403).json({msg: "Could not verify your email, probably the link expired"});
     }
 }
 
