@@ -9,7 +9,7 @@ packer {
 
 variable "image_name" {
   type = string
-  default = "new_image"
+  default = "new-image"
 }
 
 source "googlecompute" "packer-image-creation" {
