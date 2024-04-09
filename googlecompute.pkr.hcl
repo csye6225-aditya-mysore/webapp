@@ -8,7 +8,7 @@ packer {
 }
 
 variable "image_name" {
-  type = string
+  type    = string
   default = "new-image"
 }
 
