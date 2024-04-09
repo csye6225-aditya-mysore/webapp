@@ -45,8 +45,7 @@ jobs:
         run: packer init googlecompute.pkr.hcl
 
       - name: Build image 
-        run: packer build -var "image_name=${{secrets.IMAGE_NAME}}" \
-                  googlecompute.pkr.hcl
+        run: packer build -var "image_name=${{secrets.IMAGE_NAME}}"
               
 
       - name: Create new instance template
