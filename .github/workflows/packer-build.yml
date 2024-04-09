@@ -49,20 +49,20 @@ jobs:
               
 
       - name: Create new instance template
-        run: gcloud compute instance-templates create ${{secrets.TEMPLATE_NAME}} \
-                --project="dev-aditya-mysore" \
-                --instance-template-region=${{secrets.REGION}} \
-                --image=${{secrets.IMAGE_NAME}} \ 
-                --machine-type=${{secrets.MACHINE_TYPE}} \
-                --boot-disk-type=${{secrets.DISK_TYPE}} \
-                --boot-disk-size=${{secrets.DISK_SIZE}} \
-                --stack-type=${{secrets.STACK_TYPE}} \
-                --subnet=${{secrets.SUBNET}} \
-                --service-account=${{secrets.VM_SERVICE_ACCOUNT}} \
-                --scopes="cloud-platform" \
-                --network-tier=${{secrets.VM_NETWORK_TIER}} \
-                --boot-disk-kms-key=${{secrets.VM_KMS_KEY}} \
-                --tags=${{secrets.VM_NETWORK_TAGS}} \
+        run: gcloud compute instance-templates create ${{secrets.TEMPLATE_NAME}} 
+                --project="dev-aditya-mysore" 
+                --instance-template-region=${{secrets.REGION}} 
+                --image=${{secrets.IMAGE_NAME}} 
+                --machine-type=${{secrets.MACHINE_TYPE}} 
+                --boot-disk-type=${{secrets.DISK_TYPE}} 
+                --boot-disk-size=${{secrets.DISK_SIZE}} 
+                --stack-type=${{secrets.STACK_TYPE}} 
+                --subnet=${{secrets.SUBNET}} 
+                --service-account=${{secrets.VM_SERVICE_ACCOUNT}} 
+                --scopes="cloud-platform" 
+                --network-tier=${{secrets.VM_NETWORK_TIER}} 
+                --boot-disk-kms-key=${{secrets.VM_KMS_KEY}} 
+                --tags=${{secrets.VM_NETWORK_TAGS}} 
                 --metadata=startup-script='#!/bin/bash
                       echo "Hello, World! This is a startup script."
                       echo "Started with startup script"
