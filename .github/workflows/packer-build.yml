@@ -51,6 +51,7 @@ jobs:
       - name: Create new instance template
         run: gcloud compute instance-templates create ${{secrets.TEMPLATE_NAME}} 
                 --project="dev-aditya-mysore" 
+                --region=${{secrets.REGION}} 
                 --instance-template-region=${{secrets.REGION}} 
                 --image=${{secrets.IMAGE_NAME}} 
                 --machine-type=${{secrets.MACHINE_TYPE}} 
