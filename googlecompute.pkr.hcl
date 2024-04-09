@@ -7,12 +7,17 @@ packer {
   }
 }
 
+variable "image_name" {
+  type = string
+  default = "new_image"
+}
+
 source "googlecompute" "packer-image-creation" {
   project_id          = "dev-aditya-mysore"
   source_image_family = "centos-stream-8"
   machine_type        = "e2-custom-2-4096"
   zone                = "us-east1-b"
-  image_name          = "dev-centos-8-${formatdate("YYYY-MM-DD-hh-mm-ss", timestamp())}"
+  image_name          = var.image_name
   image_description   = "CSYE6225 image creation practice"
   ssh_username        = "adityamysore002"
 }
