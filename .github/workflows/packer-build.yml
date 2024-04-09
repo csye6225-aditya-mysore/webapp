@@ -64,18 +64,4 @@ jobs:
                 --network-tier=${{secrets.VM_NETWORK_TIER}} 
                 --boot-disk-kms-key=${{secrets.VM_KMS_KEY}} 
                 --tags=${{secrets.VM_NETWORK_TAGS}} 
-                --metadata=startup-script='#!/bin/bash
-                      echo "Hello, World! This is a startup script."
-                      echo "Started with startup script"
-                      if ! test [-f /opt/webapp/.env]; then
-                        echo "DATABASE_NAME=${{secrets.VM_DB_NAME}}" > /opt/webapp/.env
-                        echo "USERNAME=${{secrets.VM_DB_USERNAME}}" >> /opt/webapp/.env
-                        echo "PASSWORD=${{secrets.VM_DB_PASSWORD}}" >> /opt/webapp/.env
-                        echo "DATABASE_HOST=${{secrets.VM_DB_HOST}}" >> /opt/webapp/.env
-                        echo "PUBSUB=${{secrets.VM_PUBSUB_NAME}}" >> /opt/webapp/.env
-                        sudo chown csye6225:csye6225 /opt/webapp/.env
-                      fi
-                      sudo systemctl daemon-reload
-                      sudo systemctl enable webapp.service
-                      sudo systemctl start webapp.service
-                      EOF'
+                --metadata=startup-script=${{secrets.VM_STARTUP_SCRIPT}}
