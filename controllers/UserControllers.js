@@ -119,7 +119,7 @@ const getUser = async (req, res, next) => {
             return res.status(403).send();
         }
         const objectToSend = {
-            id: req.user.id,
+            // id: req.user.id,
             first_name: req.user.first_name,
             last_name: req.user.last_name,
             username: req.user.username,
