@@ -18,4 +18,4 @@
  - Make a change and push to your forked repo
  - Create a PR from your forked repo feeature branch to org repo main branch
  - That should trigger packer-validate, pr-workflow, tests-worflow
- - If all of the pass, merge your changes, that should trigger your packer-build workflow which takes about 5-8 minutes to create an image       
+ - If all of the pass, merge your changes, that should trigger your packer-build workflow which takes about 5-8 minutes to create an image        
