@@ -1,7 +1,7 @@
 const validRouteStrings = [
     "/healthz",
-    "/v1/user",
-    "/v1/user/self",
+    "/v2/user",
+    "/v2/user/self",
     "/verify"
 ];
 

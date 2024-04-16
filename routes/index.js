@@ -6,7 +6,7 @@ import { verifyEmail } from "../controllers/UserControllers.js";
 
 const routes = (app) => {
     app.use("/healthz",  checkIfValidMethod, healthRouter);
-    app.use("/v1/user", userRouter);
+    app.use("/v2/user", userRouter);
     app.use("/verify", verifyEmail);
 }
 
