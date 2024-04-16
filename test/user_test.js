@@ -29,12 +29,12 @@ describe("User Routes integration tests", async () => {
         // var auth = await sequelize.authenticate();
         console.log("Executed first");
         // First create a User
-        const postResponse = await request(app).post("/v1/user").send(mockUser);
+        const postResponse = await request(app).post("/v2/user").send(mockUser);
         console.log(postResponse.status);
         expect(postResponse.status).to.equal(201);
 
         // Send username, password for basic authentication and verify you get a user and check for correctness
-        const getResponse = await request(app).get("/v1/user/self").auth(mockUser.username, mockUser.password, {type: "basic"});
+        const getResponse = await request(app).get("/v2/user/self").auth(mockUser.username, mockUser.password, {type: "basic"});
         console.log(getResponse.body);
         expect(getResponse.status).to.equal(200);
         const {first_name, last_name, username} = getResponse.body;
@@ -47,10 +47,10 @@ describe("User Routes integration tests", async () => {
     it("Update the account and using the GET call, verify that the account was updated", async () => {
         console.log("Executed second");
 
-        const putResponse = await request(app).put("/v1/user/self").auth(mockUser.username, mockUser.password, {type: "basic"}).send(updateUserBody);
+        const putResponse = await request(app).put("/v2/user/self").auth(mockUser.username, mockUser.password, {type: "basic"}).send(updateUserBody);
         expect(putResponse.status).to.equal(204);
 
-        const getResponse = await request(app).get("/v1/user/self").auth(mockUser.username, updateUserBody.password, {type: "basic"});
+        const getResponse = await request(app).get("/v2/user/self").auth(mockUser.username, updateUserBody.password, {type: "basic"});
         expect(getResponse.status).to.equal(200);
         const {first_name, last_name, username} = getResponse.body;
         expect(first_name).to.equal(updateUserBody.first_name);
